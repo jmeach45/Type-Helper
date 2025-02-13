@@ -1,0 +1,583 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #6FB199;
+    font-family: Lato;
+}
+
+#app {
+    display: grid;
+    grid-template-columns: auto auto auto ;
+}
+
+header {
+    grid-row: 1 / 2;
+    grid-column: 1 / 9;
+    display: flex;
+    justify-content: space-between;
+    background-color: #3A8A7F;
+    height: 5rem;
+}
+
+h3{
+    color: #FFFFFF;
+    text-align: center;
+    margin: 1.5rem;
+}
+
+#loginpage {
+    grid-column: 1/9;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    height: 90vh;
+}
+
+#loginpage div {
+    border: 9px solid #3A8A7F;
+    border-radius: 15px;
+    background-color: #3A8A7F;
+}
+
+#loginpage div p {
+    color: rgb(121, 0, 0);
+}
+
+#loginpage div div {
+    display: flex;
+    flex-direction:row;
+    margin-bottom: .5rem;
+    align-items: center;
+    justify-content: center;
+}
+
+#loginpage button {
+    width: 10rem;
+    height: 2.5rem;
+    background-color: #E27D60;
+    border: none;
+    color: #FFFFFF;
+    font-size: medium;
+
+}
+
+#loginbutton {
+    margin-top: 1rem;
+}
+
+#loginpage button:hover {
+    background-color: #bd6850;
+}
+
+#username {
+    margin-left: 10px;
+    width: 16rem;
+    height: 1.5rem;
+}
+
+#password {
+    margin-left: 10px;
+    width: 16rem;
+    height: 1.5rem;
+}
+
+#newUsername {
+    margin-left: 10px;
+    width: 16rem;
+    height: 1.5rem;
+}
+
+#newPassword {
+    margin-left: 10px;
+    width: 16rem;
+    height: 1.5rem;
+}
+
+#startpageview {
+    grid-row: 2/3;
+    grid-column: 1/9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#startpageview h1 {
+    border: 9px solid #3A8A7F;
+    border-radius: 15px;
+    background-color: #3A8A7F;
+    width: 15rem;
+    font-size: 40px;
+    text-align: center;
+}
+
+#typingtest {
+    grid-row: 2/3;
+    grid-column: 1/9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#codingtest {
+    grid-row: 2/3;
+    grid-column: 1/9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#edittypingtest {
+    grid-row: 2/3;
+    grid-column: 1/9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#editcodingtest {
+    grid-row: 2/3;
+    grid-column: 1/9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#showuserstats {
+    grid-row: 2/3;
+    grid-column: 1/9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#statblocks {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5rem;
+}
+
+#typingstatblock {
+    margin-right: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#typingstatblock h2 {
+    margin: 2rem;
+}
+
+#typingstatblock div {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    width: 20rem;
+    height: 25rem;
+    border: 9px solid #3A8A7F;
+    border-radius: 15px;
+    background-color: #fdfdfd;
+}
+
+#codingstatblock {
+    margin-left: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#codingstatblock h2 {
+    margin: 2rem;
+}
+
+#codingstatblock div {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    width: 20rem;
+    height: 25rem;
+    border: 9px solid #3A8A7F;
+    border-radius: 15px;
+    background-color: #fdfdfd;
+}
+
+.statLabel {
+    text-decoration: underline;
+}
+
+.value {
+    font-weight: 1000;
+    font-size: 22px;
+}
+
+h1 {
+    color: #FFFFFF;
+}
+
+h2 {
+    color: #FFFFFF;
+    margin: 4rem;
+    font-size: 30px;
+}
+
+#testButtons {
+    display: flex;
+    justify-content: space-between;
+}
+
+#editButtons {
+    display: flex;
+    justify-content: space-between;
+}
+
+button {
+    width: 25rem;
+    height: 5rem;
+    background-color: #E27D60;
+    border: none;
+    color: #FFFFFF;
+    font-size: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 15px;
+}
+
+button:hover {
+    background-color: #bd6850;
+}
+
+#accountInfo {
+    width: 10rem;
+    height: 2.5rem;
+    background-color: #E27D60;
+    border: none;
+    color: #FFFFFF;
+    font-size: medium;
+    margin: 1rem;
+}
+
+#accountInfo:hover {
+    background-color: #bd6850;
+}
+
+#typingtestdisplay {
+    background-color: #FFFFFF;
+    border: 9px solid #3A8A7F;
+    border-radius: 6px;
+    /* margin-left: 15%;
+    margin-right: 15%; */
+    width: 45rem;
+    height: 7rem;
+    font-size: 20px;
+}
+
+#codingtestdisplay {
+    background-color: #FFFFFF;
+    border: 9px solid #3A8A7F;
+    border-radius: 6px;
+    /* margin-left: 15%;
+    margin-right: 15%; */
+    width: 45rem;
+    height: 7rem;
+    font-size: 20px;
+}
+
+#testinput {
+    width: 45rem;
+    height: 7rem;
+    font-size: 20px;
+    resize: none;
+}
+
+.topstuff {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.back {
+    width: 10rem;
+    height: 2.5rem;
+    background-color: #E27D60;
+    border: none;
+    color: #FFFFFF;
+    font-size: medium;
+    margin: 1rem;
+}
+
+.back:hover {
+    background-color: #bd6850;
+}
+
+#TypingTestAddButton {
+    width: 10rem;
+    height: 2.5rem;
+    background-color: #E27D60;
+    border: none;
+    color: #FFFFFF;
+    font-size: medium;
+    margin: 1rem;
+}
+
+#TypingTestAddButton:hover {
+    background-color: #bd6850;
+}
+
+#CodingTestAddButton {
+    width: 10rem;
+    height: 2.5rem;
+    background-color: #E27D60;
+    border: none;
+    color: #FFFFFF;
+    font-size: medium;
+    margin: 1rem;
+}
+
+#CodingTestAddButton:hover {
+    background-color: #bd6850;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.modal-content {
+    background-color: #3A8A7F;
+    padding: 20px;
+    width: 30rem;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.modal-content p {
+    color: rgb(121, 0, 0);
+}
+
+.modal-content div{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.modal-content label {
+    display: inline-block; 
+    width: 30%;
+    text-align: right; 
+    margin-right: 10px; 
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.modal-content input {
+    display: inline-block; 
+    width: 100%; 
+    margin-bottom: 10px;
+}
+
+.modal-content textarea {
+    display: inline-block; 
+    width: 100%;
+    height: 10rem;
+    resize: none;
+}
+
+.modal-content button {
+    display: block;
+    margin: 0 auto;
+    border: none;
+    margin-top: 10px;
+}
+
+.addButton {
+    width: 10rem;
+    height: 2.5rem;
+    background-color: #E27D60;
+    border: none;
+    color: #FFFFFF;
+    font-size: medium;
+    margin: 1rem;
+}
+
+.addButton:hover {
+    background-color: #bd6850;
+}
+
+.edit-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.edit-modal-content {
+    background-color: #3A8A7F;
+    padding: 20px;
+    width: 25rem;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.edit-modal-content p {
+    color: rgb(121, 0, 0);
+}
+
+.edit-modal-content div{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.edit-modal-content label {
+    display: inline-block; 
+    width: 30%;
+    text-align: right; 
+    font-weight: 700;
+    margin-right: 10px; 
+    margin-bottom: 10px;
+}
+
+.edit-modal-content input {
+    display: inline-block; 
+    width: 100%; 
+    margin-bottom: 10px;
+}
+
+.edit-modal-content textarea {
+    display: inline-block; 
+    width: 100%;
+    height: 10rem;
+    resize: none;
+}
+
+.edit-modal-content button {
+    display: block;
+    margin: 0 auto;
+    border: none;
+    margin-top: 10px;
+}
+
+.account-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.account-modal-content {
+    background-color: #3A8A7F;
+    padding: 20px;
+    width: 30rem;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    align-items: center;
+}
+
+.account-modal-content p {
+    color: rgb(121, 0, 0);
+}
+
+.account-modal-content label {
+    display: inline-block; 
+    width: 30%;
+    text-align: right; 
+    margin-right: 10px; 
+    font-weight: 700;
+}
+
+.account-modal-content input {
+    display: inline-block; 
+    width: 60%; 
+}
+
+.account-modal-content button {
+    display: block;
+    margin: 0 auto;
+    border: none;
+    margin-top: 10px;
+}
+
+.end-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.end-modal-content {
+    background-color: #fdfdfd;
+    border: 9px solid #3A8A7F;
+    padding: 20px;
+    width: 30rem;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.end-modal-content p {
+    margin: .5rem;
+    font-weight: 1000;
+    font-size: 22px;
+}
+
+ul li {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+ul li div {
+    display: flex;
+    flex-direction: row;
+}
+
+ul li div p {
+    background-color: #FFFFFF;
+    border: 9px solid #3A8A7F;
+    border-radius: 6px;
+    /* margin-left: 15%;
+    margin-right: 15%; */
+    width: 45rem;
+    height: 7rem;
+    font-size: 20px;
+}
+
+ul li div div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

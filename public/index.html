@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div id="app">
+            <!-- this is my vue app -->
+            <header v-if="showHeader">
+                <h3>Welcome, {{ currentUser.username }}</h1>
+                <button id="accountInfo" v-on:click="statsScreen">Account</button>
+            </header>
+
+            <div id="loginpage" v-if="showLoginScreen">
+                <h1>Welcome to Type Helper</h1>
+                <h2>Login to your account</h2>
+                <div>
+                    <div>
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" v-model="username" placeholder="Enter your username">
+                    </div>
+
+                    <div>
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" v-model="password" placeholder="Enter your password">
+                    </div>
+                    <p v-if="showError">Invalid username or password.</p>
+                </div>
+                <button id="loginbutton" v-on:click="login">Login</button>
+
+                <p>or</p>
+
+                <button v-on:click="accountModal">Create An Account</button>
+            </div>
+
+            <div v-on:click="hideModal" v-if="showAccountModal" class="account-modal" style>
+                <div v-on:click.stop class="account-modal-content">
+                    <label for="newUsername">Userame: </label>
+                    <input type="text" id="newUsername" placeholder="Enter Username" v-model="newUsername">
+            
+                    <label for="newPassword">Password: </label>
+                    <input type="password" id="newPassword" placeholder="Enter Password" v-model="newPassword">
+
+                    <p v-if="showError">Please fill in required fields.</p>
+            
+                    <button v-on:click="addUser" class="addButton">Create Account</button>
+                </div>
+            </div>  
+
+            <div id="startpageview" v-if="showStartScreen" style>
+                <h1>Type Helper</h1>
+                <h2>Choose your test type:</h2>
+                <div id="testButtons">
+                    <button v-on:click="takeTypingTest">Typing</button>
+                    <button v-on:click="takeCodingTest">Coding</button>
+                </div>
+                <h2>or edit your tests:</h2>
+                <div id="editButtons">
+                    <button v-on:click="editTypingTests">Edit Typing Tests</button>
+                    <button v-on:click="editCodingTests">Edit Coding Tests</button>
+                </div>
+            </div>
+
+            <div id="typingtest" v-if="showTypingTest" style>
+                <h1>Start Typing!</h1>
+                <h2>{{ currentTypingTest.name }}</h2>
+                <p id="typingtestdisplay">{{ currentTypingTest.test }}</p>
+                <textarea placeholder="start typing here..." id="testinput" v-model="typedText" @keydown="handleKeyDown" @keydown.tab.prevent="handleTabKeyForTypingTest"></textarea>
+            </div>
+
+            <div id="codingtest" v-if="showCodingTest" style>
+                <h1>Start Coding!</h1>
+                <h2>{{ currentCodingTest.name }}</h2>
+                <div v-html="currentCodingTest.test" id="codingtestdisplay"></div>
+                <textarea placeholder="start typing here..." id="testinput" v-model="typedCodingText" @keydown="handleCodingKeyDown" @keydown.tab.prevent="handleTabKeyForCodingTest"></textarea>
+            </div>
+            
+
+            <div id="edittypingtest" v-if="showEditTypingTests" style>
+                <div class="topstuff">
+                    <button class="back" v-on:click="goBack">Back</button>
+                    <h1>All Typing Tests</h1>
+                    <button id="TypingTestAddButton" v-on:click="addNewTypingTest">Add New Test</button>
+                </div>
+                <ul class="alltests">
+                    <li v-for="typingTest in typingTests">
+                        <h3>{{ typingTest.name }}</h3>
+                        <div>
+                            <p>{{ typingTest.test }}</p>
+                            <div>
+                                <button class="addButton" v-on:click="deleteTypingTest(typingTest._id)">Delete</button>
+                                <button class="addButton" v-on:click="editModal(typingTest)">Edit Test</button>
+                            </div>
+                        </div> 
+                    </li>
+                </ul>
+                <div v-on:click="hideModal" v-if="showEditModal" class="edit-modal" style>
+                    <div v-on:click.stop class="edit-modal-content">
+                        <div>
+                            <label for="newUpdatedName">Name: </label>
+                            <input type="text" id="newUpdatedName" placeholder="Test's Name" v-model="newName">
+                        </div>
+
+                        <div>
+                            <label for="newUpdatedContent">Content: </label>
+                            <textarea id="newUpdatedContent" placeholder="Contents of the test" v-model="newContent" @keydown.tab.prevent="handleTabKeyForEdit"></textarea>
+                        </div>
+                        <p v-if="showError">Test names must be between 0 and 30 characters.</p>
+                        <p v-if="showContentError">Test content must be betwen 0 and 250 characters.</p>
+                        <button v-on:click="updateTypingTest(this.editedTest._id)" class="addButton">Confirm</button>
+                    </div>
+                </div> 
+            </div>
+            
+            <div id="editcodingtest" v-if="showEditCodingTests" style>
+                <div class="topstuff">
+                    <button class="back" v-on:click="goBack">Back</button>
+                    <h1>All Coding Tests</h1>
+                    <button id="CodingTestAddButton" v-on:click="addNewCodingTest">Add New Test</button>
+                </div>
+                <ul class="alltests">
+                    <li v-for="codingTest in codingTests">
+                        <h3>{{ codingTest.name }}</h3>
+                        <div>
+                            <p v-html="codingTest.test"></p>
+                            <div>
+                                <button class="addButton" v-on:click="deleteCodingTest(codingTest._id)">Delete</button>
+                                <button class="addButton" v-on:click="editModal(codingTest)">Edit Test</button>
+                            </div>
+                        </div> 
+                    </li>
+                </ul>
+                <div v-on:click="hideModal" v-if="showEditModal" class="edit-modal" style>
+                    <div v-on:click.stop class="edit-modal-content">
+                        <div>
+                            <label for="newUpdatedName">Name: </label>
+                            <input type="text" id="newUpdatedName" placeholder="Test's Name" v-model="newName">
+                        </div>
+
+                        <div>
+                            <label for="newUpdatedContent">Content: </label>
+                            <textarea id="newUpdatedContent" placeholder="Contents of the test" v-model="newContent" @keydown.tab.prevent="handleTabKeyForEdit"></textarea>
+                        </div>
+                        <p v-if="showError">Test names must be between 0 and 30 characters.</p>
+                        <p v-if="showContentError">Test content must be betwen 0 and 250 characters.</p>
+                        <button v-on:click="updateCodingTest(this.editedTest._id)" class="addButton">Confirm</button>
+                    </div>
+                </div> 
+            </div>
+
+            <div id="showuserstats" v-if="showUserStats" style>
+                <h1>Hello, {{ currentUser.username }}</h1>
+                <div id="statblocks">
+                    <div id="typingstatblock">
+                        <h2>Typing Stats</h2>
+                        <div>
+                            <p class="statLabel">Average WPM</p>
+                            <p class="value">{{ currentUser.typingWpm }}</p>
+                            <p class="statLabel">Average Accuracy</p>
+                            <p class="value">{{ currentUser.typingAccuracy }}%</p>
+                            <p class="statLabel">Test's Taken</p>
+                            <p class="value">{{ currentUser.typingTestsTaken }}</p>
+                        </div>
+                    </div>
+                    <div id="codingstatblock">
+                        <h2>Coding Stats</h2>
+                        <div>
+                            <p class="statLabel">Average WPM</p>
+                            <p class="value">{{ currentUser.codingWpm }}</p>
+                            <p class="statLabel">Average Accuracy</p>
+                            <p class="value">{{ currentUser.codingAccuracy }}%</p>
+                            <p class="statLabel">Test's Taken</p>
+                            <p class="value">{{ currentUser.codingTestsTaken }}</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="back" v-on:click="goBack">Back</button>
+                <button class="back" v-on:click="logOut">Log Out</button>
+            </div>
+
+
+            <div v-on:click="hideModal" v-if="showAddTypingTests" class="modal-overlay">
+                <div v-on:click.stop class="modal-content">
+                    <div>
+                        <label for="testName">Name: </label>
+                        <input type="text" id="testName" placeholder="Typing Test's Name" v-model="newTestName">
+                    </div>
+
+                    <div>
+                        <label for="typingTestContent">Content: </label>
+                        <textarea id="typingTestContent" placeholder="Contents of the test" v-model="newTestContent" @keydown.tab.prevent="handleTabKeyForAdd"></textarea>
+                    </div>
+                    <p v-if="showError">Test names must be between 0 and 30 characters.</p>
+                    <p v-if="showContentError">Test content must be betwen 0 and 250 characters.</p>
+                    <button v-on:click="addTypingTest" class="addButton">Add</button>
+                </div>
+            </div>
+            
+
+
+            <div v-on:click="hideModal" v-if="showAddCodingTests" class="modal-overlay">
+                <div v-on:click.stop class="modal-content">
+                    <div>
+                        <label for="testName">Name: </label>
+                        <input type="text" id="testName" placeholder="Coding Test's Name" v-model="newTestName">
+                    </div>
+                    <div>
+                        <label for="codingTestContent">Content: </label>
+                        <textarea id="codingTestContent" placeholder="Contents of the test" v-model="newTestContent" @keydown.tab.prevent="handleTabKeyForAdd"></textarea>
+                    </div>
+                    <p v-if="showError">Test names must be between 0 and 30 characters.</p>
+                    <p v-if="showContentError">Test content must be betwen 0 and 250 characters.</p>
+                    <button v-on:click="addCodingTest" class="addButton">Add</button>
+                </div>
+            </div>  
+            
+            <div v-on:click="hideModal" v-if="showTestStats" class="end-modal-overlay">
+                <div v-on:click.stop class="end-modal-content">
+                    <p>WPM: {{ this.currentTestWpm }}</p>
+                    <p>Accuracy: {{ this.currentTestAccuracy }}%</p>
+                </div>
+            </div>  
+
+
+
+        </div>
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <script src="app.js"></script>
+    </body>
+</html>
