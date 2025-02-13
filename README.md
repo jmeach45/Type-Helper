@@ -70,10 +70,4 @@ const codingTestSchema = new mongoose.Schema({
 
 ## Security Considerations
 - Passwords are hashed using bcrypt before being stored in the database.
-- User authentication should be handled with session tokens or JWT.
-
-## Future Enhancements
-- Implement frontend using React or Vue.js
-- Add real-time multiplayer typing competitions
-- Improve security with JWT authentication
 
